@@ -1,0 +1,112 @@
+﻿{
+  "rbmqConfigSection": {
+    "Queues": [
+      {
+        "Name": "publisher",
+        "Host": "10.0.8.86",
+        "Username": "bridgeusr",
+        "Password": "5dSbUYzVzMvWNdd6RJPL",
+        "Exchange": "test.direct",
+        "Queue": "",
+        "AutoDelete": true,
+        "RoutingKey": "test",
+        "Qos": "1024",
+        "ExchangeType": "direct"
+      },
+      {
+        "Name": "subscriber",
+        "Host": "10.0.8.86",
+        "Username": "bridgeusr",
+        "Password": "5dSbUYzVzMvWNdd6RJPL",
+        "Exchange": "test.direct",
+        "Queue": "test.direct.consumer",
+        "AutoDelete": true,
+        "RoutingKey": "test",
+        "Qos": "1024",
+        "ExchangeType": "direct"
+      },
+      {
+        "Name": "failureSettings",
+        "Host": "10.0.8.86",
+        "Username": "bridgeusr",
+        "Password": "5dSbUYzVzMvWNdd6RJPL",
+        "Exchange": "test.direct",
+        "Queue": "test.direct.publisher",
+        "AutoDelete": true,
+        "RoutingKey": "test",
+        "Qos": "1024",
+        "ExchangeType": "direct"
+      },
+      {
+        "Name": "publisherFanout",
+        "Host": "10.0.8.86",
+        "Username": "bridgeusr",
+        "Password": "5dSbUYzVzMvWNdd6RJPL",
+        "Exchange": "test.fanout",
+        "Queue": "test.fanout.publisher",
+        "AutoDelete": true,
+        "RoutingKey": "test",
+        "Qos": "1024",
+        "ExchangeType": "fanout"
+      },
+      {
+        "Name": "subscriberFanout",
+        "Host": "10.0.8.86",
+        "Username": "bridgeusr",
+        "Password": "5dSbUYzVzMvWNdd6RJPL",
+        "Exchange": "test.fanout",
+        "Queue": "test.fanout.consumer",
+        "AutoDelete": true,
+        "RoutingKey": "test",
+        "Qos": "1024",
+        "ExchangeType": "fanout"
+      },
+      {
+        "Name": "subscriberDynamicFanout",
+        "Host": "10.0.8.86",
+        "Username": "bridgeusr",
+        "Password": "5dSbUYzVzMvWNdd6RJPL",
+        "Exchange": "test.fanout",
+        "Queue": "",
+        "AutoDelete": true,
+        "RoutingKey": "test",
+        "Qos": "1024",
+        "ExchangeType": "fanout"
+      }
+    ]
+  },
+  "MsgQueues": {
+    "Queues": [
+      {
+        "name": "TradersMonitoring",
+        "host": "localhost",
+        "username": "guest",
+        "password": "guest",
+        "exchange": "traders.monitoring",
+        "qos": "1024",
+        "exchangeType": "fanout",
+        "bind": "true"
+      },
+      {
+        "name": "TradersMonitoring1",
+        "host": "localhost",
+        "username": "guest",
+        "password": "guest",
+        "exchange": "traders.monitoring",
+        "qos": "1024",
+        "exchangeType": "fanout",
+        "bind": "true"
+      },
+      {
+        "name": "TradersMonitoring2",
+        "host": "localhost",
+        "username": "guest",
+        "password": "guest",
+        "exchange": "traders.monitoring",
+        "qos": "1024",
+        "exchangeType": "fanout",
+        "bind": "true"
+      }
+    ]
+  }
+}
