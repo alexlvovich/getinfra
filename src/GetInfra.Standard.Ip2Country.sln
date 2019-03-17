@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28711.60
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetInfra.Standard.Ip2Country", "GetInfra.Standard.Ip2Country\GetInfra.Standard.Ip2Country.csproj", "{BB469960-AED8-46BC-B160-BC06C33E7C22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetInfra.Standard.Ip2Country.Tests", "..\tests\GetInfra.Standard.Ip2Country.Tests\GetInfra.Standard.Ip2Country.Tests.csproj", "{02BEAF2B-2595-4645-83EB-4962BF001DC5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB469960-AED8-46BC-B160-BC06C33E7C22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB469960-AED8-46BC-B160-BC06C33E7C22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB469960-AED8-46BC-B160-BC06C33E7C22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB469960-AED8-46BC-B160-BC06C33E7C22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02BEAF2B-2595-4645-83EB-4962BF001DC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02BEAF2B-2595-4645-83EB-4962BF001DC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02BEAF2B-2595-4645-83EB-4962BF001DC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02BEAF2B-2595-4645-83EB-4962BF001DC5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {03A376D1-C4ED-44C2-A837-943002A869F1}
+	EndGlobalSection
+EndGlobal
