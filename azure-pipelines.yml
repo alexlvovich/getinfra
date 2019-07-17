@@ -31,6 +31,6 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
-    projects: '**/*.csproj'
+    projects: '$(solution)'
     configuration: '$(buildConfiguration)'
     arguments: '/property:Configuration=Release'
