@@ -14,23 +14,18 @@ namespace GetInfra.Standard.Queue.Implementations.ServiceBus
         private readonly SubscriptionClient _client;
         private readonly IConfiguration _configuration;
         private readonly IJsonSerializer _serializer;
-
-        public AzureSBTopicConsumer(ILoggerFactory loggerFactory, IConfiguration configuration, IJsonSerializer serializer, string consumerName)
+        public AzureSBTopicConsumer(ILoggerFactory loggerFactory, IConfiguration configuration, IJsonSerializer serializer)
         {
             _logger = loggerFactory.CreateLogger<AzureSBTopicConsumer>();
             _serializer = serializer;
             _configuration = configuration;
-
-            var consumer = _configuration.GetValue<ServiceBusConfig>("AzureServiceBus:" + consumerName);
-            var conSting = new ServiceBusConnectionStringBuilder(consumer.Endpoint, consumer.EntityPath, consumer.SasKeyName, consumer.SasKey);
-
-            //var conSting = new ServiceBusConnectionStringBuilder(
-            //    _configuration.GetValue<string>("AzureServiceBus:Endpoint"),
-            //    _configuration.GetValue<string>("AzureServiceBus:EntityPath"),
-            //    _configuration.GetValue<string>("AzureServiceBus:SasKeyName"),
-            //    _configuration.GetValue<string>("AzureServiceBus:SasKey"));
-
-            _client = new SubscriptionClient(conSting, consumer.SubscriptionName);
+            var conSting = new ServiceBusConnectionStringBuilder(
+                _configuration.GetValue<string>("AzureServiceBus:Endpoint"),
+                _configuration.GetValue<string>("AzureServiceBus:EntityPath"),
+                _configuration.GetValue<string>("AzureServiceBus:SasKeyName"),
+                _configuration.GetValue<string>("AzureServiceBus:SasKey"));
+            
+            _client = new SubscriptionClient(conSting, _configuration.GetValue<string>("AzureServiceBus:SubscriptionName"));
         }
 
         public event Action<object, QMessage> MessageRecieved;

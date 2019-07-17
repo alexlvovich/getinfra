@@ -15,25 +15,18 @@ namespace GetInfra.Standard.Queue.Implementations.ServiceBus
         private readonly IConfiguration _configuration;
         private readonly TopicClient _client;
         private readonly IJsonSerializer _serializer;
-
-        public AzureSBTopicPublisher(ILoggerFactory loggerFactory, IConfiguration configuration, IJsonSerializer serializer, string publisherName)
+        public AzureSBTopicPublisher(ILoggerFactory loggerFactory, IConfiguration configuration, IJsonSerializer serializer)
         {
             _logger = loggerFactory.CreateLogger<AzureSBTopicPublisher>();
             _serializer = serializer;
             _configuration = configuration;
-
-            var publisher = _configuration.GetValue<ServiceBusConfig>("AzureServiceBus:" + publisherName);
-            var conSting = new ServiceBusConnectionStringBuilder(publisher.Endpoint, publisher.EntityPath, publisher.SasKeyName, publisher.SasKey);
-
-            //var conSting = new ServiceBusConnectionStringBuilder(
-            //    _configuration.GetValue<string>("AzureServiceBus:Endpoint"),
-            //    _configuration.GetValue<string>("AzureServiceBus:EntityPath"),
-            //    _configuration.GetValue<string>("AzureServiceBus:SasKeyName"),
-            //    _configuration.GetValue<string>("AzureServiceBus:SasKey"));
-
+            var conSting = new ServiceBusConnectionStringBuilder(
+                _configuration.GetValue<string>("AzureServiceBus:Endpoint"),
+                _configuration.GetValue<string>("AzureServiceBus:EntityPath"),
+                _configuration.GetValue<string>("AzureServiceBus:SasKeyName"),
+                _configuration.GetValue<string>("AzureServiceBus:SasKey"));
             _client = new TopicClient(conSting);
         }
-
         public async Task Enqueue(QMessage msg)
         {
             var jsonified = _serializer.Serialize(msg);
