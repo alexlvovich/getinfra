@@ -22,7 +22,19 @@ namespace GetInfra.Standard.Queue.Implementations.ServiceBus
             _serializer = serializer;
             _configuration = configuration;
 
-            var publisher = _configuration.GetValue<ServiceBusConfig>("AzureServiceBus:" + publisherName);
+            if (publisherName == null)
+            {
+                _logger.LogError("publisher name not specified");
+                throw new ArgumentException("publisher name not specified");
+            }
+
+            var publisher = _configuration.GetSection("AzureServiceBus:" + publisherName).Get<ServiceBusConfig>();
+            if (publisher == null)
+            {
+                _logger.LogError("publisher configuration not found");
+                throw new Exception("publisher configuration not found");
+            }
+
             var conSting = new ServiceBusConnectionStringBuilder(publisher.Endpoint, publisher.EntityPath, publisher.SasKeyName, publisher.SasKey);
 
             //var conSting = new ServiceBusConnectionStringBuilder(

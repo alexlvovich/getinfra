@@ -21,7 +21,19 @@ namespace GetInfra.Standard.Queue.Implementations.ServiceBus
             _serializer = serializer;
             _configuration = configuration;
 
-            var consumer = _configuration.GetValue<ServiceBusConfig>("AzureServiceBus:" + consumerName);
+            if (consumerName == null)
+            {
+                _logger.LogError("consumer name not specified");
+                throw new ArgumentNullException("consumer name not specified");
+            }
+
+            var consumer = _configuration.GetSection("AzureServiceBus:" + consumerName).Get<ServiceBusConfig>();
+            if (consumer == null)
+            {
+                _logger.LogError("consumer configuration not found");
+                throw new Exception("consumer configuration not found");
+            }
+
             var conSting = new ServiceBusConnectionStringBuilder(consumer.Endpoint, consumer.EntityPath, consumer.SasKeyName, consumer.SasKey);
 
             //var conSting = new ServiceBusConnectionStringBuilder(
